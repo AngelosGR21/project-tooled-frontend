@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-
+import 'package:tooled/pages/single_item.dart';
 import '../models/item.dart';
-
-import '../utils.dart';
+import '../Utils/utils.dart';
+import '../pages/single_item.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _SearchState extends State<Search> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text('Tooled'),
+          title: Text('T O O L E D'),
           actions: [
             IconButton(
                 onPressed: () {
@@ -40,58 +40,68 @@ class _SearchState extends State<Search> {
               child: ListView.builder(
                 itemCount: items.length,
                 itemBuilder: (BuildContext ctx, index) {
-                  return Container(
-                    margin: EdgeInsets.all(20),
-                    height: 300,
-                    child: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.network(
-                              items[index].item_image,
-                              fit: BoxFit.cover,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SingleItem(items: items[index]),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(20),
+                      height: 300,
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.network(
+                                items[index].item_image,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20)),
-                            gradient: LinearGradient(
-                              begin: Alignment.bottomLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Colors.black.withOpacity(0.7),
-                                Colors.black.withOpacity(0.7),
-                              ],
+                          Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20)),
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Colors.black.withOpacity(0.7),
+                                  Colors.black.withOpacity(0.7),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                items[index].name,
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Text(
+                                  items[index].name,
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.7),
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                '£' + items[index].price.toString(),
                                 style: TextStyle(
                                   color: Colors.white.withOpacity(0.7),
                                   fontSize: 20,
                                 ),
-                              ),
-                            ),
-                            Text(
-                              '£' + items[index].price.toString(),
-                              style: TextStyle(
-                                color: Colors.white.withOpacity(0.7),
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        )
-                      ],
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },
