@@ -3,6 +3,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tooled/pages/edit_password.dart';
+import 'package:tooled/pages/edit_username.dart';
 import '../pages/edit_name.dart';
 import '../widgets/display_image_widget.dart';
 import '../user/user_data.dart';
@@ -37,12 +39,14 @@ class _ProfileState extends State<Profile> {
         InkWell(
           onTap: () {},
           child: DisplayImage(
-            imagePath: user.image,
+            imagePath: user.avatar,
             onPressed: () {},
           ),
         ),
         SizedBox(height: 35),
         buildUserInfoDisplay(user.name, 'Name', EditNameFormPage()),
+        buildUserInfoDisplay(user.username, 'Username', EditUsernameFormPage()),
+        buildUserInfoDisplay(user.password, 'Password', EditPasswordFormPage()),
       ]),
     );
   }
@@ -50,7 +54,7 @@ class _ProfileState extends State<Profile> {
   // Widget builds the display item with the proper formatting to display the user's info
   Widget buildUserInfoDisplay(String getValue, String title, Widget editPage) =>
       Padding(
-          padding: EdgeInsets.only(bottom: 10),
+          padding: EdgeInsets.only(bottom: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
