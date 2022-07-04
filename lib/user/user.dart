@@ -1,47 +1,53 @@
 class User {
-  String image;
+  String avatar;
   String name;
-  String email;
-  String phone;
-  String aboutMeDescription;
+  String lat;
+  String long;
+  String username;
+  String password;
 
   // Constructor
   User({
-    required this.image,
+    required this.avatar,
     required this.name,
-    required this.email,
-    required this.phone,
-    required this.aboutMeDescription,
+    required this.lat,
+    required this.long,
+    required this.username,
+    required this.password,
   });
 
   User copy({
-    String? imagePath,
+    String? avatar,
     String? name,
-    String? phone,
-    String? email,
-    String? about,
+    String? lat,
+    String? long,
+    String? username,
+    String? password,
   }) =>
       User(
-        image: imagePath ?? this.image,
+        avatar: avatar ?? this.avatar,
         name: name ?? this.name,
-        email: email ?? this.email,
-        phone: phone ?? this.phone,
-        aboutMeDescription: about ?? this.aboutMeDescription,
+        lat: lat ?? this.lat,
+        long: long ?? this.long,
+        username: username ?? this.username,
+        password: password ?? this.password,
       );
 
   static User fromJson(Map<String, dynamic> json) => User(
-        image: json['imagePath'],
+        avatar: json['imagePath'],
         name: json['name'],
-        email: json['email'],
-        aboutMeDescription: json['about'],
-        phone: json['phone'],
+        lat: json['lat'],
+        long: json['long'],
+        username: json['username'],
+        password: json['password'],
       );
 
   Map<String, dynamic> toJson() => {
-        'imagePath': image,
+        'imagePath': avatar,
         'name': name,
-        'email': email,
-        'about': aboutMeDescription,
-        'phone': phone,
+        'lat': lat,
+        'long': long,
+        'username': username,
+        'password': password,
       };
 }
