@@ -2,21 +2,34 @@
 
 import 'dart:ui';
 
-class Items {
-  String name;
-  int price;
-  String body;
-  int user_id;
-  int category_id;
-  String item_image;
-  List<Items> subItems;
+class Item {
+  final int itemId;
+  final String name;
+  final int price;
+  final String body;
+  final String itemImage;
+  final DateTime createdAt;
+  final int rating;
+  final bool isAvailable;
+  final String lat;
+  final String long;
+  final int userId;
+  final int categoryId;
+  final String category;
 
-  Items(
-      {required this.name,
-      required this.price,
-      required this.body,
-      required this.user_id,
-      required this.category_id,
-      required this.item_image,
-      required this.subItems});
+  const Item({
+    required this.itemId,
+    required this.name,
+    required this.price,
+    required this.body,
+    required this.itemImage,
+    required this.createdAt,
+    required this.rating,
+    required this.isAvailable,
+    required this.lat,
+    required this.long,
+    required this.userId,
+    required this.categoryId,
+    required this.category,
+  });
 }
