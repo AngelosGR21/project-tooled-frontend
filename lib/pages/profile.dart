@@ -4,10 +4,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tooled/pages/edit_password.dart';
+import 'package:tooled/pages/edit_postcode.dart';
 import 'package:tooled/pages/edit_username.dart';
 import '../pages/edit_name.dart';
 import '../widgets/display_image_widget.dart';
-import '../user/user_data.dart';
+import '../Utils/user_data.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -46,6 +47,7 @@ class _ProfileState extends State<Profile> {
         SizedBox(height: 35),
         buildUserInfoDisplay(user.name, 'Name', EditNameFormPage()),
         buildUserInfoDisplay(user.username, 'Username', EditUsernameFormPage()),
+        buildUserInfoDisplay("DH6 5AN", 'Post Code', EditPostCodeFormPage()),
         buildUserInfoDisplay(user.password, 'Password', EditPasswordFormPage()),
       ]),
     );
