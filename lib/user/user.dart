@@ -34,7 +34,7 @@ class User {
       );
 
   static User fromJson(Map<String, dynamic> json) => User(
-        avatar: json['imagePath'],
+        avatar: json['avatar'],
         name: json['name'],
         lat: json['lat'],
         long: json['long'],
@@ -43,7 +43,7 @@ class User {
       );
 
   Map<String, dynamic> toJson() => {
-        'imagePath': avatar,
+        'avatar': avatar,
         'name': name,
         'lat': lat,
         'long': long,
