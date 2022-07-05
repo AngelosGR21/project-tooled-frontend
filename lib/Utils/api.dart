@@ -2,6 +2,7 @@ import "../globals.dart" as globals;
 
 import "package:http/http.dart" as http;
 import 'dart:convert';
+import 'dart:async';
 
 Future verifyCredentials(String username, String password) async {
   var url = Uri.parse("https://be-tooled.herokuapp.com/api/users/login");
@@ -20,5 +21,42 @@ Future verifyCredentials(String username, String password) async {
     return 400;
   } else {
     return 500;
+  }
+}
+
+Future<Map> createItem(
+    String name,
+    num price,
+    String body,
+    String itemImage,
+    bool isAvailable,
+    String lat,
+    String long,
+    int userId,
+    int categoryId) async {
+  final response = await http.post(
+    Uri.parse('https://be-tooled.herokuapp.com/api/items'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{
+      "name": name,
+      "price": price,
+      "body": body,
+      "item_image": itemImage,
+      "is_available": true,
+      "lat": lat,
+      "long": long,
+      "user_id": userId,
+      "category_id": categoryId
+    }),
+  );
+
+  if (response.statusCode == 201) {
+    var item = jsonDecode(response.body) as Map;
+    print(item);
+    return item;
+  } else {
+    throw Exception('Failed to create item.');
   }
 }
