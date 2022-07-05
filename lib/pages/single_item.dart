@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-
 import '../models/item.dart';
 
 class SingleItem extends StatelessWidget {
-  final Items items;
+  final Item items;
   const SingleItem({Key? key, required this.items}) : super(key: key);
 
   @override
@@ -27,7 +26,7 @@ class SingleItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  items.item_image,
+                  items.itemImage,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -48,11 +47,11 @@ class SingleItem extends StatelessWidget {
           ),
           Container(
             width: double.maxFinite,
-            height: 240,
+            height: 100,
             child: TabBarView(children: [
               Padding(
                 padding: const EdgeInsets.all(15),
-                child: Center(child: Text(items.body)),
+                // child: Center(child: Text('hello')),
               ),
               Text('Review'),
               Padding(
@@ -66,7 +65,7 @@ class SingleItem extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      '£' + items.price.toString() + ' Message seller',
+                      '£10 Message seller',
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
