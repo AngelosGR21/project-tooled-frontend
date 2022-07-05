@@ -64,9 +64,9 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SingleItem(
-                                    items: items[index],
-                                  )),
+                            builder: (context) =>
+                                SingleItem(data: items[index]),
+                          ),
                         );
                       },
                       child: Container(
