@@ -54,8 +54,7 @@ Future<Map> createItem(
 
   if (response.statusCode == 201) {
     var item = jsonDecode(response.body) as Map;
-    print(item);
-    return item;
+    return item["item"];
   } else {
     throw Exception('Failed to create item.');
   }
