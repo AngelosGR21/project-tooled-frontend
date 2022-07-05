@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../user/user_data.dart';
+import '../Utils/user_data.dart';
 import '../widgets/appbar_widget.dart';
 
 // Handles the Page to edit the Username Section of the User Profile.
@@ -21,8 +21,8 @@ class _EditUsernameFormPageState extends State<EditUsernameFormPage> {
     super.dispose();
   }
 
-  void updateUserValue(String email) {
-    user.username = email;
+  void updateUserValue(String username) {
+    user.username = username;
   }
 
   @override
