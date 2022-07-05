@@ -45,3 +45,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+lib/Utils/auth_example.dart
+lib/Utils/test_api.dart
