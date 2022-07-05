@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:string_validator/string_validator.dart';
-import '../user/user_data.dart';
+import '../Utils/user_data.dart';
 import '../widgets/appbar_widget.dart';
 
 // Handles the Page to edit the Name Section of the User Profile.

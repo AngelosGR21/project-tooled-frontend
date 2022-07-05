@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../user/user_data.dart';
+import '../Utils/user_data.dart';
 import '../widgets/appbar_widget.dart';
 
 // Handles the Page to edit the Password Section of the User Profile.
