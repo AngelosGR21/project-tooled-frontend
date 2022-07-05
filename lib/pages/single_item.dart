@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import '../models/item.dart';
 
 class SingleItem extends StatelessWidget {
-  final Item items;
-  const SingleItem({Key? key, required this.items}) : super(key: key);
+  final dynamic data;
+  const SingleItem({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class SingleItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  items.itemImage,
+                  data['item_image'],
                   fit: BoxFit.cover,
                 ),
               ),
@@ -47,13 +50,13 @@ class SingleItem extends StatelessWidget {
           ),
           Container(
             width: double.maxFinite,
-            height: 100,
+            height: 200,
             child: TabBarView(children: [
               Padding(
                 padding: const EdgeInsets.all(15),
-                // child: Center(child: Text('hello')),
+                child: Center(child: Text(data['body'])),
               ),
-              Text('Review'),
+              Container(child: Center(child: Text(data['rating'].toString()))),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 40.0, vertical: 70.0),
@@ -65,7 +68,7 @@ class SingleItem extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      '£10 Message seller',
+                      '£' + data['price'].toString() + ' Message seller',
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
