@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tooled/Utils/api.dart';
+import '../navigation_bar.dart';
 
 class Listing extends StatefulWidget {
   const Listing({Key? key}) : super(key: key);
@@ -16,7 +17,8 @@ class _ListingState extends State<Listing> {
   var name = "";
   var price = 0;
   var body = "";
-  var itemImage = "none";
+  var itemImage =
+      "https://media.istockphoto.com/photos/man-using-a-lawn-mower-in-his-back-yard-picture-id1096126898?s=612x612";
   var isAvailable = true;
   var lat = "51.51561";
   var long = "-0.0769";
@@ -172,12 +174,31 @@ class _ListingState extends State<Listing> {
                   child: Container(
                     padding: EdgeInsets.all(10),
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        var snackBarMessage = "";
                         if (_formKey.currentState!.validate()) {
-                          setState(() {
-                            createItem(name, price, body, itemImage,
-                                isAvailable, lat, long, userId, categoryId);
-                          });
+                          var result = await createItem(
+                              name,
+                              price,
+                              body,
+                              itemImage,
+                              isAvailable,
+                              lat,
+                              long,
+                              userId,
+                              categoryId);
+
+                          if (result.isNotEmpty) {
+                            snackBarMessage = "Item has been created!";
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Navigation()));
+                          }
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(snackBarMessage),
+                            duration: const Duration(seconds: 2),
+                          ));
                         }
                       },
                       style: ElevatedButton.styleFrom(
