@@ -1,15 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import '../models/item.dart';
 
-class SingleItem extends StatelessWidget {
+class SingleItem extends StatefulWidget {
   final dynamic data;
-  const SingleItem({
-    Key? key,
-    required this.data,
-  }) : super(key: key);
+  SingleItem({Key? key, this.data}) : super(key: key);
+  @override
+  State<SingleItem> createState() => _SingleItemState();
+}
 
+class _SingleItemState extends State<SingleItem> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,7 +29,7 @@ class SingleItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  data['item_image'],
+                  widget.data['item_image'],
                   fit: BoxFit.cover,
                 ),
               ),
@@ -43,7 +43,7 @@ class SingleItem extends StatelessWidget {
               indicatorColor: Colors.black,
               tabs: [
                 Tab(text: 'Description'),
-                Tab(text: 'Reviews'),
+                Tab(text: 'Comments'),
                 Tab(text: 'Price'),
               ],
             ),
@@ -54,9 +54,15 @@ class SingleItem extends StatelessWidget {
             child: TabBarView(children: [
               Padding(
                 padding: const EdgeInsets.all(15),
-                child: Center(child: Text(data['body'])),
+                child: Center(child: Text(widget.data['body'])),
               ),
-              Container(child: Center(child: Text(data['rating'].toString()))),
+              Container(
+                  child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Center(
+                    child: Text(
+                        'Cut the grass well, the blades could do with being sharpened')),
+              )),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 40.0, vertical: 70.0),
@@ -68,7 +74,7 @@ class SingleItem extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      '£' + data['price'].toString() + ' Message seller',
+                      '£' + widget.data['price'].toString() + ' Message seller',
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
