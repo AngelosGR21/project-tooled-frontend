@@ -24,32 +24,36 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      body: Column(children: [
-        AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          toolbarHeight: 10,
-        ),
-        Center(
-          child: Padding(
-            padding: EdgeInsets.only(bottom: 20),
-            child: Text("Edit Profile",
-                style: GoogleFonts.bebasNeue(fontSize: 35)),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            toolbarHeight: 10,
           ),
-        ),
-        InkWell(
-          onTap: () {},
-          child: DisplayImage(
-            imagePath: user.avatar,
-            onPressed: () {},
+          Center(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: Text("Edit Profile",
+                  style: GoogleFonts.bebasNeue(fontSize: 35)),
+            ),
           ),
-        ),
-        SizedBox(height: 35),
-        buildUserInfoDisplay(user.name, 'Name', EditNameFormPage()),
-        buildUserInfoDisplay(user.username, 'Username', EditUsernameFormPage()),
-        buildUserInfoDisplay("DH6 5AN", 'Post Code', EditPostCodeFormPage()),
-        buildUserInfoDisplay(user.password, 'Password', EditPasswordFormPage()),
-      ]),
+          InkWell(
+            onTap: () {},
+            child: DisplayImage(
+              imagePath: user.avatar,
+              onPressed: () {},
+            ),
+          ),
+          SizedBox(height: 35),
+          buildUserInfoDisplay(user.name, 'Name', EditNameFormPage()),
+          buildUserInfoDisplay(
+              user.username, 'Username', EditUsernameFormPage()),
+          buildUserInfoDisplay("DH6 5AN", 'Post Code', EditPostCodeFormPage()),
+          buildUserInfoDisplay(
+              user.password, 'Password', EditPasswordFormPage()),
+        ]),
+      ),
     );
   }
 
