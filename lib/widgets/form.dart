@@ -131,7 +131,7 @@ class Credentials extends State<FormWidget> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(snackBarMessage),
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(seconds: 4),
                     ),
                   );
                 }
