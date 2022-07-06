@@ -1,7 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+
 import 'package:tooled/Utils/api.dart';
 import '../navigation_bar.dart';
 
@@ -25,6 +29,16 @@ class _ListingState extends State<Listing> {
   var userId = 7;
   var categoryId = 1;
 
+  File? image;
+
+  Future pickImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) return;
+
+    final imageTemp = File(image.path);
+    setState(() => this.image = imageTemp);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -42,26 +56,6 @@ class _ListingState extends State<Listing> {
                       fontSize: 52,
                     )),
                 SizedBox(height: 20),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //       color: Colors.grey[200],
-                //       border: Border.all(color: Colors.white),
-                //       borderRadius: BorderRadius.circular(12),
-                //     ),
-                //     child: Padding(
-                //       padding: const EdgeInsets.only(left: 20.0),
-                //       child: TextFormField(
-                //         decoration: InputDecoration(
-                //           border: InputBorder.none,
-                //           hintText: 'Photo',
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
@@ -163,6 +157,28 @@ class _ListingState extends State<Listing> {
                         ),
                         onChanged: (priceInput) {
                           price = priceInput as int;
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                image != null
+                    ? Image.file(
+                        image!,
+                        width: 50,
+                        height: 50,
+                      )
+                    : FlutterLogo(size: 50),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Container(
+                    child: Center(
+                      child: ElevatedButton(
+                        child: const Text("Pick image to upload"),
+                        onPressed: () {
+                          pickImage();
                         },
                       ),
                     ),
