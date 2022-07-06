@@ -155,7 +155,7 @@ class _ListingState extends State<Listing> {
                             hintText: 'Price',
                           ),
                           onChanged: (priceInput) {
-                            price = priceInput as int;
+                            price = int.parse(priceInput);
                           },
                         ),
                       ),
