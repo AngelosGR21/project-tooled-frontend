@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import './pages/favourites.dart';
-import 'pages/home.dart';
+import 'pages/home1.dart';
 import './pages/inbox.dart';
 import './pages/listing.dart';
 import './pages/profile.dart';

@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert'; // for using json.decode()
 import '../pages/single_item.dart';
+import '../globals.dart' as globals;
 
 class MyApp extends StatelessWidget {
   @override
@@ -30,7 +33,6 @@ class _HomePageState extends State<HomePage> {
 
     final response = await http.get(Uri.parse(API_URL));
     final data = json.decode(response.body);
-    print(data['items']);
 
     setState(() {
       items = data['items'];
@@ -41,18 +43,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text('T O O L E D'),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  showSearch(
-                    context: context,
-                    delegate: CustomSearchDelegate(),
-                  );
-                },
-                icon: const Icon(Icons.search))
-          ]),
+        backgroundColor: Colors.black,
+        title: Text('T O O L E D'),
+      ),
       body: SafeArea(
           child: items.length == 0
               ? Center(
@@ -63,7 +56,6 @@ class _HomePageState extends State<HomePage> {
                     onPressed: _fetchData,
                   ),
                 )
-              // The ListView that displays photos
               : ListView.builder(
                   itemCount: items.length,
                   itemBuilder: (BuildContext ctx, index) {
@@ -106,99 +98,110 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text(
-                                  items[index]["name"],
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(0.7),
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                '£' + items[index]["price"].toString(),
+                          ListTile(
+                            title: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text(
+                                items[index]["name"] +
+                                    ' £' +
+                                    items[index]["price"].toString(),
                                 style: TextStyle(
                                   color: Colors.white.withOpacity(0.7),
                                   fontSize: 20,
                                 ),
-                              )
-                            ],
-                          )
+                              ),
+                            ),
+                            trailing: Icon(
+                              globals.faveList.contains(items[index])
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: Colors.red,
+                              semanticLabel:
+                                  globals.faveList.contains(items[index])
+                                      ? 'Remove from saved'
+                                      : 'Save',
+                            ),
+                            onTap: () {
+                              setState(() {
+                                if (globals.faveList.contains(items[index])) {
+                                  globals.faveList.remove(items[index]);
+                                } else {
+                                  globals.faveList.add(items[index]);
+                                }
+                              });
+                            },
+                          ),
                         ]),
                       ),
                     );
                   })),
     );
   }
-}
 
-class CustomSearchDelegate extends SearchDelegate {
-  List<String> searchResults = [
-    'Drill',
-    'Lawn mower',
-    'Water gun',
-    'Violin',
-    'Cricket bat',
-    'Macbook',
-  ];
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () {
-            if (query.isEmpty) {
-              close(context, null);
-            } else {
-              query = '';
-            }
-          })
-    ];
-  }
+// class CustomSearchDelegate extends SearchDelegate {
+//   List<String> searchResults = [
+//     'Drill',
+//     'Lawn mower',
+//     'Water gun',
+//     'Violin',
+//     'Cricket bat',
+//     'Macbook',
+//   ];
+//   @override
+//   List<Widget> buildActions(BuildContext context) {
+//     return [
+//       IconButton(
+//           icon: const Icon(Icons.clear),
+//           onPressed: () {
+//             if (query.isEmpty) {
+//               close(context, null);
+//             } else {
+//               query = '';
+//             }
+//           })
+//     ];
+//   }
 
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () {
-        close(context, null);
-      },
-    );
-  }
+//   @override
+//   Widget buildLeading(BuildContext context) {
+//     return IconButton(
+//       icon: const Icon(Icons.arrow_back),
+//       onPressed: () {
+//         close(context, null);
+//       },
+//     );
+//   }
 
-  @override
-  Widget buildResults(BuildContext context) {
-    return Center(
-      child: Text(
-        query,
-        style: const TextStyle(fontSize: 64, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
+//   @override
+//   Widget buildResults(BuildContext context) {
+//     return Center(
+//       child: Text(
+//         query,
+//         style: const TextStyle(fontSize: 64, fontWeight: FontWeight.bold),
+//       ),
+//     );
+//   }
 
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> suggestions = searchResults.where((searchResult) {
-      final result = searchResult.toLowerCase();
-      final input = query.toLowerCase();
-      return result.contains(input);
-    }).toList();
+//   @override
+//   Widget buildSuggestions(BuildContext context) {
+//     List<String> suggestions = searchResults.where((searchResult) {
+//       final result = searchResult.toLowerCase();
+//       final input = query.toLowerCase();
+//       return result.contains(input);
+//     }).toList();
 
-    return ListView.builder(
-      itemCount: suggestions.length,
-      itemBuilder: (context, index) {
-        final suggestion = suggestions[index];
-        return ListTile(
-          title: Text(suggestion),
-          onTap: () {
-            query = suggestion;
-            showResults(context);
-          },
-        );
-      },
-    );
-  }
+//     return ListView.builder(
+//       itemCount: suggestions.length,
+//       itemBuilder: (context, index) {
+//         final suggestion = suggestions[index];
+//         return ListTile(
+//           title: Text(suggestion),
+//           onTap: () {
+//             query = suggestion;
+//             showResults(context);
+//           },
+//         );
+//       },
+//     );
+//   }
 }
