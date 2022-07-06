@@ -3,11 +3,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tooled/pages/edit_password.dart';
-import 'package:tooled/pages/edit_postcode.dart';
-import 'package:tooled/pages/edit_username.dart';
-import '../pages/edit_name.dart';
-import '../widgets/display_image_widget.dart';
+import 'package:tooled/widgets/profilePage/edit_password.dart';
+import 'package:tooled/widgets/profilePage/edit_postcode.dart';
+import 'package:tooled/widgets/profilePage/edit_username.dart';
+import '../widgets/profilePage/edit_name.dart';
+import '../widgets/profilePage/display_image_widget.dart';
 import '../Utils/user_data.dart';
 
 class Profile extends StatefulWidget {

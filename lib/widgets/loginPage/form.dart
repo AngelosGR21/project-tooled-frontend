@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tooled/Utils/api.dart';
-import '../navigation_bar.dart';
+import '../../navigation_bar.dart';
 
 class FormWidget extends StatefulWidget {
   const FormWidget({super.key});
