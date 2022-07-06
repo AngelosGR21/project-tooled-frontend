@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -24,10 +24,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // The list that contains information about photos
   List items = [];
 
-  // The function that fetches data from the API
   Future<void> _fetchData() async {
     const API_URL = 'https://be-tooled.herokuapp.com/api/items';
 
@@ -42,166 +40,97 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text('T O O L E D'),
-      ),
-      body: SafeArea(
-          child: items.length == 0
-              ? Center(
-                  child: ElevatedButton(
-                    child: Text(
-                      'Load Items',
-                    ),
-                    onPressed: _fetchData,
-                  ),
-                )
-              : ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (BuildContext ctx, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                SingleItem(data: items[index]),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        margin: EdgeInsets.all(20),
-                        height: 300,
-                        child: Stack(children: [
-                          Positioned.fill(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.network(
-                                items[index]["item_image"],
-                                fit: BoxFit.cover,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Text('T O O L E D'),
+        ),
+        body: Container(
+          child: Card(
+            child: FutureBuilder(
+                future: _fetchData(),
+                builder: (context, snapshot) {
+                  return ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (BuildContext ctx, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    SingleItem(data: items[index]),
                               ),
-                            ),
-                          ),
-                          Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20)),
-                              gradient: LinearGradient(
-                                begin: Alignment.bottomLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  Colors.black.withOpacity(0.7),
-                                  Colors.black.withOpacity(0.7),
-                                ],
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            title: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                items[index]["name"] +
-                                    ' £' +
-                                    items[index]["price"].toString(),
-                                style: TextStyle(
-                                  color: Colors.white.withOpacity(0.7),
-                                  fontSize: 20,
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(20),
+                            height: 300,
+                            child: Stack(children: [
+                              Positioned.fill(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.network(
+                                    items[index]["item_image"],
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            trailing: Icon(
-                              globals.faveList.contains(items[index])
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: Colors.red,
-                              semanticLabel:
+                              Container(
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20)),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.bottomLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [
+                                      Colors.black.withOpacity(0.7),
+                                      Colors.black.withOpacity(0.7),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              ListTile(
+                                title: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Text(
+                                    items[index]["name"] +
+                                        ' £' +
+                                        items[index]["price"].toString(),
+                                    style: TextStyle(
+                                      color: Colors.white.withOpacity(0.7),
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ),
+                                trailing: Icon(
                                   globals.faveList.contains(items[index])
-                                      ? 'Remove from saved'
-                                      : 'Save',
-                            ),
-                            onTap: () {
-                              setState(() {
-                                if (globals.faveList.contains(items[index])) {
-                                  globals.faveList.remove(items[index]);
-                                } else {
-                                  globals.faveList.add(items[index]);
-                                }
-                              });
-                            },
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: Colors.red,
+                                  semanticLabel:
+                                      globals.faveList.contains(items[index])
+                                          ? 'Remove from saved'
+                                          : 'Save',
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    if (globals.faveList
+                                        .contains(items[index])) {
+                                      globals.faveList.remove(items[index]);
+                                    } else {
+                                      globals.faveList.add(items[index]);
+                                    }
+                                  });
+                                },
+                              ),
+                            ]),
                           ),
-                        ]),
-                      ),
-                    );
-                  })),
-    );
+                        );
+                      });
+                }),
+          ),
+        ));
   }
-
-// class CustomSearchDelegate extends SearchDelegate {
-//   List<String> searchResults = [
-//     'Drill',
-//     'Lawn mower',
-//     'Water gun',
-//     'Violin',
-//     'Cricket bat',
-//     'Macbook',
-//   ];
-//   @override
-//   List<Widget> buildActions(BuildContext context) {
-//     return [
-//       IconButton(
-//           icon: const Icon(Icons.clear),
-//           onPressed: () {
-//             if (query.isEmpty) {
-//               close(context, null);
-//             } else {
-//               query = '';
-//             }
-//           })
-//     ];
-//   }
-
-//   @override
-//   Widget buildLeading(BuildContext context) {
-//     return IconButton(
-//       icon: const Icon(Icons.arrow_back),
-//       onPressed: () {
-//         close(context, null);
-//       },
-//     );
-//   }
-
-//   @override
-//   Widget buildResults(BuildContext context) {
-//     return Center(
-//       child: Text(
-//         query,
-//         style: const TextStyle(fontSize: 64, fontWeight: FontWeight.bold),
-//       ),
-//     );
-//   }
-
-//   @override
-//   Widget buildSuggestions(BuildContext context) {
-//     List<String> suggestions = searchResults.where((searchResult) {
-//       final result = searchResult.toLowerCase();
-//       final input = query.toLowerCase();
-//       return result.contains(input);
-//     }).toList();
-
-//     return ListView.builder(
-//       itemCount: suggestions.length,
-//       itemBuilder: (context, index) {
-//         final suggestion = suggestions[index];
-//         return ListTile(
-//           title: Text(suggestion),
-//           onTap: () {
-//             query = suggestion;
-//             showResults(context);
-//           },
-//         );
-//       },
-//     );
-//   }
 }
