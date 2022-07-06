@@ -158,6 +158,7 @@ class _ListingState extends State<Listing> {
                             price = int.parse(priceInput);
                           },
                         ),
+
                       ),
                     ),
                   ),
