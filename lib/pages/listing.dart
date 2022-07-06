@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -79,26 +78,6 @@ class _ListingState extends State<Listing> {
                       fontSize: 52,
                     )),
                 SizedBox(height: 20),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //       color: Colors.grey[200],
-                //       border: Border.all(color: Colors.white),
-                //       borderRadius: BorderRadius.circular(12),
-                //     ),
-                //     child: Padding(
-                //       padding: const EdgeInsets.only(left: 20.0),
-                //       child: TextFormField(
-                //         decoration: InputDecoration(
-                //           border: InputBorder.none,
-                //           hintText: 'Photo',
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(

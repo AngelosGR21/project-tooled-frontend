@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
-import '../Utils/user_data.dart';
-import '../widgets/appbar_widget.dart';
+import '../../Utils/user_data.dart';
+import 'appbar_widget.dart';
 
-// Handles the Page to edit the Password Section of the User Profile.
-
-class EditPasswordFormPage extends StatefulWidget {
-  const EditPasswordFormPage({Key? key}) : super(key: key);
+// Handles the Page to edit the Username Section of the User Profile.
+class EditUsernameFormPage extends StatefulWidget {
+  const EditUsernameFormPage({Key? key}) : super(key: key);
 
   @override
-  State<EditPasswordFormPage> createState() => _EditPasswordFormPageState();
+  State<EditUsernameFormPage> createState() => _EditUsernameFormPageState();
 }
 
-class _EditPasswordFormPageState extends State<EditPasswordFormPage> {
+class _EditUsernameFormPageState extends State<EditUsernameFormPage> {
   final _formKey = GlobalKey<FormState>();
-  final passwordController = TextEditingController();
+  final userNameController = TextEditingController();
   var user = UserData.myUser;
 
   @override
   void dispose() {
-    passwordController.dispose();
+    userNameController.dispose();
     super.dispose();
   }
 
-  void updateUserValue(String password) {
-    // update password here
+  void updateUserValue(String username) {
+    user.username = username;
   }
 
   @override
@@ -39,7 +38,7 @@ class _EditPasswordFormPageState extends State<EditPasswordFormPage> {
             const SizedBox(
                 width: 330,
                 child: Text(
-                  "What's your password?",
+                  "What's your username?",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -58,14 +57,13 @@ class _EditPasswordFormPageState extends State<EditPasswordFormPage> {
                           // Handles form validation username
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter your password';
+                              return 'Please enter your username';
                             }
                             return null;
                           },
                           decoration:
-                              const InputDecoration(labelText: 'Password'),
-                          controller: passwordController,
-                          obscureText: true,
+                              const InputDecoration(labelText: 'Username'),
+                          controller: userNameController,
                         ))),
               ],
             ),
@@ -81,7 +79,7 @@ class _EditPasswordFormPageState extends State<EditPasswordFormPage> {
                           // Validate returns true if the form is valid, or false otherwise
                           if (_formKey.currentState!.validate()) {
                             // ignore: prefer_interpolation_to_compose_strings
-                            updateUserValue(passwordController.text);
+                            updateUserValue(userNameController.text);
                             Navigator.pop(context);
                           }
                         },

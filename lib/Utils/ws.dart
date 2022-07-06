@@ -16,7 +16,5 @@ void sendMessage(msg) {
     if (event!.isNotEmpty) {
       print("This is what came back >>>> $event");
     }
-
-    channel!.sink.close();
   });
 }

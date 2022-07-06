@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tooled/login_page.dart';
+import 'package:tooled/pages/login_page.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);

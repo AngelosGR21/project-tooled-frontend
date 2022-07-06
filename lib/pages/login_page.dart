@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'register.dart';
-import 'navigation_bar.dart';
-import 'widgets/form.dart';
+import '../navigation_bar.dart';
+import '../widgets/loginPage/form.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

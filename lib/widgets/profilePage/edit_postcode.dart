@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../Utils/user_data.dart';
-import '../widgets/appbar_widget.dart';
+import '../../Utils/user_data.dart';
+import 'appbar_widget.dart';
 
 // Handles the Page to edit the Username Section of the User Profile.
 class EditPostCodeFormPage extends StatefulWidget {
