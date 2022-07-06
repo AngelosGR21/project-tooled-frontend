@@ -1,15 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import '../models/item.dart';
 
-class SingleItem extends StatelessWidget {
+class SingleItem extends StatefulWidget {
   final dynamic data;
-  const SingleItem({
-    Key? key,
-    required this.data,
-  }) : super(key: key);
+  SingleItem({Key? key, this.data}) : super(key: key);
+  @override
+  State<SingleItem> createState() => _SingleItemState();
+}
 
+class _SingleItemState extends State<SingleItem> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -21,63 +21,73 @@ class SingleItem extends StatelessWidget {
             'T O O L E D',
           ),
         ),
-        body: Column(children: [
-          Container(
-            height: 250,
-            margin: EdgeInsets.all(15),
-            child: Positioned.fill(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  data['item_image'],
-                  fit: BoxFit.cover,
+        body: SingleChildScrollView(
+          child: Column(children: [
+            Container(
+              height: 250,
+              margin: EdgeInsets.all(15),
+              child: Positioned.fill(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(
+                    widget.data['item_image'],
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(height: 15),
-          Container(
-            child: TabBar(
-              labelColor: Colors.black,
-              unselectedLabelColor: Colors.grey,
-              indicatorColor: Colors.black,
-              tabs: [
-                Tab(text: 'Description'),
-                Tab(text: 'Reviews'),
-                Tab(text: 'Price'),
-              ],
-            ),
-          ),
-          Container(
-            width: double.maxFinite,
-            height: 200,
-            child: TabBarView(children: [
-              Padding(
-                padding: const EdgeInsets.all(15),
-                child: Center(child: Text(data['body'])),
+            SizedBox(height: 15),
+            Container(
+              child: TabBar(
+                labelColor: Colors.black,
+                unselectedLabelColor: Colors.grey,
+                indicatorColor: Colors.black,
+                tabs: [
+                  Tab(text: 'Description'),
+                  Tab(text: 'Comments'),
+                  Tab(text: 'Price'),
+                ],
               ),
-              Container(child: Center(child: Text(data['rating'].toString()))),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 40.0, vertical: 70.0),
-                child: Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+            ),
+            Container(
+              width: double.maxFinite,
+              height: 200,
+              child: TabBarView(children: [
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Center(child: Text(widget.data['body'])),
+                ),
+                Container(
+                    child: Padding(
+                  padding: const EdgeInsets.all(15),
                   child: Center(
-                    child: Text(
-                      '£' + data['price'].toString() + ' Message seller',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+                      child: Text(
+                          'Cut the grass well, the blades could do with being sharpened')),
+                )),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 40.0, vertical: 70.0),
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '£' +
+                            widget.data['price'].toString() +
+                            ' Message seller',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ]),
-          )
-        ]),
+              ]),
+            )
+          ]),
+        ),
       ),
     );
   }

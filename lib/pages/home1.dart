@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert'; // for using json.decode()
 import '../pages/single_item.dart';
-import '../login_page.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -42,9 +41,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text('T O O L E D'),
-      ),
+          backgroundColor: Colors.black,
+          title: Text('T O O L E D'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  showSearch(
+                    context: context,
+                    delegate: CustomSearchDelegate(),
+                  );
+                },
+                icon: const Icon(Icons.search))
+          ]),
       body: SafeArea(
           child: items.length == 0
               ? Center(
@@ -123,6 +131,74 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   })),
+    );
+  }
+}
+
+class CustomSearchDelegate extends SearchDelegate {
+  List<String> searchResults = [
+    'Drill',
+    'Lawn mower',
+    'Water gun',
+    'Violin',
+    'Cricket bat',
+    'Macbook',
+  ];
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+          icon: const Icon(Icons.clear),
+          onPressed: () {
+            if (query.isEmpty) {
+              close(context, null);
+            } else {
+              query = '';
+            }
+          })
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Center(
+      child: Text(
+        query,
+        style: const TextStyle(fontSize: 64, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> suggestions = searchResults.where((searchResult) {
+      final result = searchResult.toLowerCase();
+      final input = query.toLowerCase();
+      return result.contains(input);
+    }).toList();
+
+    return ListView.builder(
+      itemCount: suggestions.length,
+      itemBuilder: (context, index) {
+        final suggestion = suggestions[index];
+        return ListTile(
+          title: Text(suggestion),
+          onTap: () {
+            query = suggestion;
+            showResults(context);
+          },
+        );
+      },
     );
   }
 }
