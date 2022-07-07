@@ -13,7 +13,7 @@ class _SingleItemState extends State<SingleItem> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
@@ -45,47 +45,72 @@ class _SingleItemState extends State<SingleItem> {
                 tabs: [
                   Tab(text: 'Description'),
                   Tab(text: 'Comments'),
-                  Tab(text: 'Price'),
                 ],
               ),
             ),
             Container(
               width: double.maxFinite,
-              height: 200,
+              height: 310,
               child: TabBarView(children: [
                 Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Center(child: Text(widget.data['body'])),
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Text(widget.data['body']),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40.0, vertical: 30.0),
+                        child: Container(
+                          padding: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '£' +
+                                  widget.data['price'].toString() +
+                                  ' Message seller 077712210301',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 Container(
-                    child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Center(
-                      child: Text(
-                          'Cut the grass well, the blades could do with being sharpened')),
-                )),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 40.0, vertical: 70.0),
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
                     child: Center(
-                      child: Text(
-                        '£' +
-                            widget.data['price'].toString() +
-                            ' Message seller',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                        child: Text(
+                            'Cut the grass well, the blades could do with being sharpened')),
                   ),
                 ),
               ]),
-            )
+
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(
+              //       horizontal: 40.0, vertical: 70.0),
+              //   child: Container(
+              //     padding: EdgeInsets.all(20),
+              //     decoration: BoxDecoration(
+              //       color: Colors.black,
+              //       borderRadius: BorderRadius.circular(12),
+              //     ),
+              //     child: Center(
+              //       child: Text(
+              //         '£' +
+              //             widget.data['price'].toString() +
+              //             ' Message seller 077712210301',
+              //         style: TextStyle(
+              //             color: Colors.white, fontWeight: FontWeight.bold),
+            ),
           ]),
         ),
       ),
