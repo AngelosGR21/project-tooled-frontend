@@ -24,13 +24,7 @@ class _NavigationState extends State<Navigation> {
     });
   }
 
-  final List<Widget> _pages = [
-    HomePage(),
-    Favourites(),
-    Listing(),
-    Inbox(),
-    Profile()
-  ];
+  final List<Widget> _pages = [HomePage(), Favourites(), Listing(), Profile()];
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +70,6 @@ class _NavigationState extends State<Navigation> {
                     GButton(
                       icon: Icons.new_label,
                       text: 'New',
-                    ),
-                    GButton(
-                      icon: Icons.message,
-                      text: 'Inbox',
                     ),
                     GButton(
                       icon: Icons.person,
