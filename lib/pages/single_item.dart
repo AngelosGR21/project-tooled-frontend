@@ -82,29 +82,17 @@ class _SingleItemState extends State<SingleItem> {
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 40.0, vertical: 30.0),
-                        child: Container(
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Center(
-                            child: ElevatedButton(
-                              child: Text("Test call"),
-                              onPressed: () async {
-                                FlutterPhoneDirectCaller.callNumber(
-                                    "085921191121");
-                              },
-                            ),
-                            // child: Text(
-                            //   '£' +
-                            //       widget.data['price'].toString() +
-                            //       ' Message seller 077712210301',
-                            //   textAlign: TextAlign.center,
-                            //   style: TextStyle(
-                            //       color: Colors.white,
-                            //       fontWeight: FontWeight.bold),
-                            // ),
+                        child: Center(
+                          child: ElevatedButton(
+                            style:
+                                ElevatedButton.styleFrom(primary: Colors.black),
+                            child: Text("Price -" +
+                                " £" +
+                                widget.data["price"].toString() +
+                                " Call owner"),
+                            onPressed: () async {
+                              FlutterPhoneDirectCaller.callNumber("07");
+                            },
                           ),
                         ),
                       )
