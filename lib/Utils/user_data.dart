@@ -12,7 +12,7 @@ class UserData {
     username: 'oxlong123',
     name: 'Mike Oxlong',
     avatar:
-        "https://media.istockphoto.com/photos/middle-aged-white-male-creative-in-casual-office-lounge-area-looks-to-picture-id1146478798?s=612x612",
+        "https://i.ibb.co/YfHTxYx/joseph-gonzalez-i-Fg-Rcq-Hznqg-unsplash.jpg",
     lat: '51.51561',
     long: '-0.0769',
     password: '***********',
