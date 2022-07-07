@@ -42,7 +42,10 @@ class _ListingState extends State<Listing> {
     return Form(
       key: _formKey,
       child: Scaffold(
-        backgroundColor: Colors.grey[300],
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Text('T O O L E D'),
+        ),
         body: SafeArea(
           child: Center(
             child: SingleChildScrollView(
@@ -175,10 +178,14 @@ class _ListingState extends State<Listing> {
                     child: Container(
                       child: Center(
                         child: ElevatedButton(
-                          child: const Text("Pick image to upload"),
+                          child: const Text(
+                            "Pick image to upload",
+                          ),
                           onPressed: () {
                             pickImage();
                           },
+                          style:
+                              ElevatedButton.styleFrom(primary: Colors.black),
                         ),
                       ),
                     ),
@@ -218,6 +225,7 @@ class _ListingState extends State<Listing> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
+                            primary: Colors.black,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.0))),
                         child: Padding(

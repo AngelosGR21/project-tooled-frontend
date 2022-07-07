@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 
 class SingleItem extends StatefulWidget {
@@ -93,23 +91,6 @@ class _SingleItemState extends State<SingleItem> {
                   ),
                 ),
               ]),
-
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(
-              //       horizontal: 40.0, vertical: 70.0),
-              //   child: Container(
-              //     padding: EdgeInsets.all(20),
-              //     decoration: BoxDecoration(
-              //       color: Colors.black,
-              //       borderRadius: BorderRadius.circular(12),
-              //     ),
-              //     child: Center(
-              //       child: Text(
-              //         '£' +
-              //             widget.data['price'].toString() +
-              //             ' Message seller 077712210301',
-              //         style: TextStyle(
-              //             color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ]),
         ),
