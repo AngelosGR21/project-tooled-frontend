@@ -168,7 +168,7 @@ class _ListingState extends State<Listing> {
                           width: 50,
                           height: 50,
                         )
-                      : FlutterLogo(size: 50),
+                      : Icon(Icons.handyman, size: 50),
                   SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
