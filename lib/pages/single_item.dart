@@ -8,6 +8,27 @@ class SingleItem extends StatefulWidget {
 }
 
 class _SingleItemState extends State<SingleItem> {
+  Card buildCard() {
+    var heading = 'mark123';
+    var subheading = '7 July 2022 10:01am';
+    var supportingText = 'Really nice car to ride';
+    return Card(
+        elevation: 4.0,
+        child: Column(
+          children: [
+            ListTile(
+              title: Text(heading),
+              subtitle: Text(subheading),
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
+              alignment: Alignment.centerLeft,
+              child: Text(supportingText),
+            ),
+          ],
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -85,9 +106,14 @@ class _SingleItemState extends State<SingleItem> {
                 Container(
                   child: Padding(
                     padding: const EdgeInsets.all(20),
-                    child: Center(
-                        child: Text(
-                            'Cut the grass well, the blades could do with being sharpened')),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        children: [
+                          buildCard(),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ]),
