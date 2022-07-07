@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 class SingleItem extends StatefulWidget {
   final dynamic data;
@@ -88,15 +89,22 @@ class _SingleItemState extends State<SingleItem> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Center(
-                            child: Text(
-                              '£' +
-                                  widget.data['price'].toString() +
-                                  ' Message seller 077712210301',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                            child: ElevatedButton(
+                              child: Text("Test call"),
+                              onPressed: () async {
+                                FlutterPhoneDirectCaller.callNumber(
+                                    "085921191121");
+                              },
                             ),
+                            // child: Text(
+                            //   '£' +
+                            //       widget.data['price'].toString() +
+                            //       ' Message seller 077712210301',
+                            //   textAlign: TextAlign.center,
+                            //   style: TextStyle(
+                            //       color: Colors.white,
+                            //       fontWeight: FontWeight.bold),
+                            // ),
                           ),
                         ),
                       )
