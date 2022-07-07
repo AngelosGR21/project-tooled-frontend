@@ -42,6 +42,7 @@ dependencies:
   string_validator: ^0.3.0
   http: ^0.13.4
   image_picker: ^0.8.5+3
+  flutter_phone_direct_caller: ^2.1.1
 
 
 dev_dependencies:
