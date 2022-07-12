@@ -10,7 +10,7 @@ class UserData {
 
   static User myUser = User(
     username: 'oxlong123',
-    name: 'Mike Oxlong',
+    name: 'Bob Dudley',
     avatar:
         "https://i.ibb.co/YfHTxYx/joseph-gonzalez-i-Fg-Rcq-Hznqg-unsplash.jpg",
     lat: '51.51561',

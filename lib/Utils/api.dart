@@ -5,7 +5,8 @@ import 'dart:convert';
 import 'dart:async';
 
 Future verifyCredentials(String username, String password) async {
-  var url = Uri.parse("https://be-tooled.herokuapp.com/api/users/login");
+  var url =
+      Uri.parse("https://project-tooled-backend.herokuapp.com/api/users/login");
   var requestBody = jsonEncode({
     'username': username.toString(),
     'password': password.toString(),
@@ -35,7 +36,7 @@ Future<Map> createItem(
     int userId,
     int categoryId) async {
   final response = await http.post(
-    Uri.parse('https://be-tooled.herokuapp.com/api/items'),
+    Uri.parse('https://project-tooled-backend.herokuapp.com/api/items'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

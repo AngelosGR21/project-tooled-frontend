@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   List items = [];
 
   Future<void> _fetchData() async {
-    const API_URL = 'https://be-tooled.herokuapp.com/api/items';
+    const API_URL = 'https://project-tooled-backend.herokuapp.com/api/items';
 
     final response = await http.get(Uri.parse(API_URL));
     final data = json.decode(response.body);
